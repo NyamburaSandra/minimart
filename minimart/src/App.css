@@ -1,9 +1,33 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
 }
+
 body {
   font-family: Arial, sans-serif;
-  
+}
+
+nav {
+  background: white !important;
+  padding: 1.2rem 2rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 0 !important;
+}
+
+nav button {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 1.2rem !important;
+  cursor: pointer !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+}
+
+nav button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4) !important;
 }

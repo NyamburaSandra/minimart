@@ -77,6 +77,33 @@
   font-weight: 500;
 }
 
+.auth-toggle {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.auth-toggle p {
+  margin: 0;
+}
+
+.toggle-link {
+  color: #ff8c00;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toggle-link:hover {
+  color: #ff6b35;
+}
+
+.auth-hint {
+  margin-top: 1rem;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;

@@ -1,8 +1,7 @@
 
 import './App.css';
 import React, { useState } from 'react';
-import Login from './pages/Auth/Login';
-import Signup from './pages/Auth/Signup';
+import AuthForm from './pages/Auth/AuthForm';
 import Shop from './pages/Shop/Shop';
 import Cart from './pages/Shop/Cart';
 import Checkout from './pages/Checkout/Checkout';
@@ -17,21 +16,25 @@ type Order = { id: number; email: string; phone: string; items: { name: string; 
 type NavProps = {
   user: User | null;
   cartCount: number;
-  setPage: React.Dispatch<React.SetStateAction<'login' | 'signup' | 'shop' | 'cart' | 'checkout' | 'admin'>>;
+  setPage: React.Dispatch<React.SetStateAction<'auth' | 'shop' | 'cart' | 'checkout' | 'admin'>>;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 const Nav: React.FC<NavProps> = ({ user, cartCount, setPage, setUser }) => (
-  <nav style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
-    {user && !user.isAdmin && <button onClick={() => setPage('shop')}>🛒 Shop</button>}
-    {user && !user.isAdmin && <button onClick={() => setPage('cart')}>🛍️ Cart ({cartCount})</button>}
-    {user && <button onClick={() => { setUser(null); setPage('login'); }}>🚪 Logout</button>}
-    {!user && <button onClick={() => setPage('login')}>🔐 Login</button>}
-    {!user && <button onClick={() => setPage('signup')}>✍️ Sign Up</button>}
+  <nav style={{ display: 'flex', gap: 12, marginBottom: 24, justifyContent: 'space-between', alignItems: 'center' }}>
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      <h2 style={{ margin: 0, color: '#ff8c00', fontSize: '1.5rem', fontWeight: 'bold' }}>EMart</h2>
+      {user && !user.isAdmin && <button onClick={() => setPage('shop')}>Shop</button>}
+      {user && !user.isAdmin && <button onClick={() => setPage('cart')}>Cart ({cartCount})</button>}
+    </div>
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      {user && <button onClick={() => { setUser(null); setPage('auth'); }}>Logout</button>}
+      {!user && <button onClick={() => setPage('auth')}>Sign In</button>}
+    </div>
   </nav>
 );
 
 function App() {
-  const [page, setPage] = useState<'login' | 'signup' | 'shop' | 'cart' | 'checkout' | 'admin'>('login');
+  const [page, setPage] = useState<'auth' | 'shop' | 'cart' | 'checkout' | 'admin'>('auth');
   const [user, setUser] = useState<User | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -44,10 +47,6 @@ function App() {
     } else {
       setPage('shop');
     }
-  };
-  const handleSignup = (user: User) => {
-    setUser(user);
-    setPage('shop');
   };
 
   // Cart handlers
@@ -101,8 +100,7 @@ function App() {
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: 24 }}>
       <Nav user={user} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} setPage={setPage} setUser={setUser} />
-      {page === 'login' && <Login onLogin={handleLogin} />}
-      {page === 'signup' && <Signup onSignup={handleSignup} />}
+      {page === 'auth' && <AuthForm onLogin={handleLogin} />}
       {page === 'shop' && <Shop onAddToCart={handleAddToCart} />}
       {page === 'cart' && <Cart cart={cart} onCheckout={handleCheckout} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} />}
       {page === 'checkout' && <Checkout onSubmit={handleOrderSubmit} />}
