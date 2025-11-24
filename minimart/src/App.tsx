@@ -9,7 +9,7 @@ import Checkout from './pages/Checkout/Checkout';
 import AdminPanel from './pages/Admin/AdminPanel';
 
 // Types
-type User = { email: string };
+type User = { email: string; isAdmin?: boolean };
 type CartItem = { id: number; name: string; price: number; image: string; quantity: number };
 type Order = { id: number; email: string; phone: string; items: { name: string; quantity: number }[] };
 
@@ -22,12 +22,11 @@ type NavProps = {
 };
 const Nav: React.FC<NavProps> = ({ user, cartCount, setPage, setUser }) => (
   <nav style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
-    {user && <button onClick={() => setPage('shop')}>Shop</button>}
-    {user && <button onClick={() => setPage('cart')}>Cart ({cartCount})</button>}
-    {user && <button onClick={() => setPage('admin')}>Admin</button>}
-    {user && <button onClick={() => { setUser(null); setPage('login'); }}>Logout</button>}
-    {!user && <button onClick={() => setPage('login')}>Login</button>}
-    {!user && <button onClick={() => setPage('signup')}>Sign Up</button>}
+    {user && !user.isAdmin && <button onClick={() => setPage('shop')}>🛒 Shop</button>}
+    {user && !user.isAdmin && <button onClick={() => setPage('cart')}>🛍️ Cart ({cartCount})</button>}
+    {user && <button onClick={() => { setUser(null); setPage('login'); }}>🚪 Logout</button>}
+    {!user && <button onClick={() => setPage('login')}>🔐 Login</button>}
+    {!user && <button onClick={() => setPage('signup')}>✍️ Sign Up</button>}
   </nav>
 );
 
@@ -40,7 +39,11 @@ function App() {
   // Auth handlers
   const handleLogin = (user: User) => {
     setUser(user);
-    setPage('shop');
+    if (user.isAdmin) {
+      setPage('admin');
+    } else {
+      setPage('shop');
+    }
   };
   const handleSignup = (user: User) => {
     setUser(user);
@@ -57,6 +60,19 @@ function App() {
       return [...prev, { ...product, quantity: 1 }];
     });
   };
+
+  const handleUpdateQuantity = (id: number, quantity: number) => {
+    if (quantity === 0) {
+      setCart(prev => prev.filter(item => item.id !== id));
+    } else {
+      setCart(prev => prev.map(item => item.id === id ? { ...item, quantity } : item));
+    }
+  };
+
+  const handleRemoveItem = (id: number) => {
+    setCart(prev => prev.filter(item => item.id !== id));
+  };
+
   const handleCheckout = () => setPage('checkout');
 
   // Checkout handler
@@ -84,13 +100,13 @@ function App() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: 24 }}>
-      <Nav user={user} cartCount={cart.length} setPage={setPage} setUser={setUser} />
+      <Nav user={user} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} setPage={setPage} setUser={setUser} />
       {page === 'login' && <Login onLogin={handleLogin} />}
       {page === 'signup' && <Signup onSignup={handleSignup} />}
       {page === 'shop' && <Shop onAddToCart={handleAddToCart} />}
-      {page === 'cart' && <Cart cart={cart} onCheckout={handleCheckout} />}
+      {page === 'cart' && <Cart cart={cart} onCheckout={handleCheckout} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} />}
       {page === 'checkout' && <Checkout onSubmit={handleOrderSubmit} />}
-      {page === 'admin' && <AdminPanel orders={orders} onSendPromo={handleSendPromo} />}
+      {page === 'admin' && <AdminPanel orders={orders} onSendPromo={handleSendPromo} adminEmail={user?.email} />}
     </div>
   );
 }
