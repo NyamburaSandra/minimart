@@ -1,0 +1,12 @@
+### file: backend/requirements.txt
+django>=4.2
+djangorestframework
+psycopg2-binary
+gunicorn
+celery[redis]
+django-redis
+boto3
+django-storages
+requests
+python-dotenv
+Pillow
