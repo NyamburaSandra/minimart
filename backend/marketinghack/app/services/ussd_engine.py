@@ -65,7 +65,7 @@ def handle_ussd(session_id, phone, text):
         product = Product.objects.get(pk=pid)
         cust, _ = Customer.objects.get_or_create(phone=phone)
         total = product.price * qty
-        order = Order.objects.create(business=product.business, customer=cust, items={{str(product.id): qty}}, total_amount=total)
+        order = Order.objects.create(business=product.business, customer=cust, items={str(product.id): qty}, total_amount=total)
         cache.delete(key)
         # Note: enqueue SMS task to confirm
         return 'END Order received. You will get an SMS confirmation.'

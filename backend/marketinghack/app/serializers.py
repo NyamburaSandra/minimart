@@ -1,3 +1,4 @@
+# File: backend/marketinghack/app/serializers.py
 from rest_framework import serializers
 from .models import Business, Product, Campaign, Customer, Order, SMSMessage
 

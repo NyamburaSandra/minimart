@@ -1,0 +1,325 @@
+[
+  {
+    "model": "app.business",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "QuickMart Essentials",
+      "phone": "+254712345678",
+      "created_at": "2025-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "name": "Mtaani Fresh Hub",
+      "phone": "0712345678",
+      "created_at": "2025-01-02T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 3,
+    "fields": {
+      "owner": 1,
+      "name": "Urban Supplies",
+      "phone": "254701234567",
+      "created_at": "2025-01-03T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 4,
+    "fields": {
+      "owner": 1,
+      "name": "Jirani Groceries",
+      "phone": "+254713998877",
+      "created_at": "2025-01-04T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 5,
+    "fields": {
+      "owner": 1,
+      "name": "Techie Snacks",
+      "phone": "0705123456",
+      "created_at": "2025-01-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 6,
+    "fields": {
+      "owner": 1,
+      "name": "Mama Mboga Deluxe",
+      "phone": "+254799887766",
+      "created_at": "2025-01-06T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 7,
+    "fields": {
+      "owner": 1,
+      "name": "Kilimani Organics",
+      "phone": "254745123456",
+      "created_at": "2025-01-07T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 8,
+    "fields": {
+      "owner": 1,
+      "name": "CBD Mini Shop",
+      "phone": "0755123456",
+      "created_at": "2025-01-08T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 9,
+    "fields": {
+      "owner": 1,
+      "name": "Household Provisions",
+      "phone": "+254798223344",
+      "created_at": "2025-01-09T10:00:00Z"
+    }
+  },
+  {
+    "model": "app.business",
+    "pk": 10,
+    "fields": {
+      "owner": 1,
+      "name": "Anng's Boutique Mart",
+      "phone": "0733445566",
+      "created_at": "2025-01-10T10:00:00Z"
+    }
+  },
+
+  
+  {
+    "model": "app.customer",
+    "pk": 1,
+    "fields": {
+      "phone": "+254711222333",
+      "name": "Kevin",
+      "metadata": {},
+      "created_at": "2025-01-01T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 2,
+    "fields": {
+      "phone": "0700112233",
+      "name": "Mary",
+      "metadata": {},
+      "created_at": "2025-01-02T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 3,
+    "fields": {
+      "phone": "254799112233",
+      "name": "Brian",
+      "metadata": {},
+      "created_at": "2025-01-03T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 4,
+    "fields": {
+      "phone": "+254721443322",
+      "name": "Grace",
+      "metadata": {},
+      "created_at": "2025-01-04T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 5,
+    "fields": {
+      "phone": "0733112233",
+      "name": "James",
+      "metadata": {},
+      "created_at": "2025-01-05T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 6,
+    "fields": {
+      "phone": "254712000111",
+      "name": "Aisha",
+      "metadata": {},
+      "created_at": "2025-01-06T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 7,
+    "fields": {
+      "phone": "+254701662244",
+      "name": "Chris",
+      "metadata": {},
+      "created_at": "2025-01-07T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 8,
+    "fields": {
+      "phone": "0755123344",
+      "name": "Sharon",
+      "metadata": {},
+      "created_at": "2025-01-08T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 9,
+    "fields": {
+      "phone": "+254798221133",
+      "name": "Linda",
+      "metadata": {},
+      "created_at": "2025-01-09T11:00:00Z"
+    }
+  },
+  {
+    "model": "app.customer",
+    "pk": 10,
+    "fields": {
+      "phone": "0708333444",
+      "name": "George",
+      "metadata": {},
+      "created_at": "2025-01-10T11:00:00Z"
+    }
+  },
+
+  
+  {
+    "model": "app.product",
+    "pk": 1,
+    "fields": {
+      "business": 1,
+      "name": "Premium Rice 5kg",
+      "price": "850.00",
+      "description": "High quality long grain rice",
+      "image": "",
+      "stock": 50,
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 2,
+    "fields": {
+      "business": 2,
+      "name": "Sunflower Cooking Oil 1L",
+      "price": "280.00",
+      "description": "Healthy and affordable",
+      "image": "",
+      "stock": 80,
+      "created_at": "2025-01-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 3,
+    "fields": {
+      "business": 3,
+      "name": "Wheat Flour 2kg",
+      "price": "190.00",
+      "description": "",
+      "image": "",
+      "stock": 100,
+      "created_at": "2025-01-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 4,
+    "fields": {
+      "business": 4,
+      "name": "Fresh Maize Flour",
+      "price": "160.00",
+      "description": "",
+      "image": "",
+      "stock": 70,
+      "created_at": "2025-01-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 5,
+    "fields": {
+      "business": 5,
+      "name": "Tissue Pack (10pcs)",
+      "price": "320.00",
+      "description": "",
+      "image": "",
+      "stock": 45,
+      "created_at": "2025-01-05T12:00:00Z"
+    }
+  },
+
+  
+  {
+    "model": "app.campaign",
+    "pk": 1,
+    "fields": {
+      "business": 1,
+      "name": "January Sale",
+      "content": "Get 10% off all products!",
+      "scheduled_at": null,
+      "is_active": true,
+      "created_at": "2025-01-01T13:00:00Z"
+    }
+  },
+  {
+    "model": "app.campaign",
+    "pk": 2,
+    "fields": {
+      "business": 2,
+      "name": "Buy 1 Get 1 Free",
+      "content": "Special on selected snacks",
+      "scheduled_at": null,
+      "is_active": true,
+      "created_at": "2025-01-02T13:00:00Z"
+    }
+  },
+
+
+  {
+    "model": "app.order",
+    "pk": 1,
+    "fields": {
+      "business": 1,
+      "customer": 1,
+      "items": {"1": 2},
+      "total_amount": "1700.00",
+      "status": "pending",
+      "created_at": "2025-01-01T14:00:00Z"
+    }
+  },
+
+ 
+  {
+    "model": "app.smsmessage",
+    "pk": 1,
+    "fields": {
+      "provider_id": "msg001",
+      "phone": "+254711222333",
+      "direction": "in",
+      "text": "Hello, do you have rice?",
+      "status": "received",
+      "created_at": "2025-01-01T15:00:00Z"
+    }
+  }
+]
