@@ -10,3 +10,4 @@ django-storages
 requests
 python-dotenv
 Pillow
+africastalking

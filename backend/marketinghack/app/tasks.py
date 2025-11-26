@@ -1,4 +1,4 @@
-### file: backend/app/tasks.py
+### file: backend/marketinghack/app/tasks.py
 from celery import shared_task
 from .models import SMSMessage, Order
 from .services.africastalking_adapter import AfricaTalkingAdapter

@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: hackuser
       POSTGRES_PASSWORD: hackpass
     ports:
-      - "5434:5432"  # avoid conflict with local Postgres
+      - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -22,14 +22,16 @@ services:
   web:
     build:
       context: ./backend
-    command: gunicorn marketinghack.marketinghack.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn marketinghack.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./backend:/app
+      - ./backend/marketinghack:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
       - redis
+    env_file:
+      - ./backend/.env   # <-- load AT keys, DB URL, etc.
     environment:
       PYTHONPATH: /app
       DJANGO_SETTINGS_MODULE: marketinghack.settings
@@ -39,12 +41,14 @@ services:
   worker:
     build:
       context: ./backend
-    command: celery -A marketinghack.celery worker -l info
+    command: celery -A marketinghack.marketinghack.celery worker -l info
     volumes:
-      - ./backend:/app
+      - ./backend/marketinghack:/app
     depends_on:
       - redis
       - db
+    env_file:
+      - ./backend/.env
     environment:
       PYTHONPATH: /app
       DJANGO_SETTINGS_MODULE: marketinghack.settings
@@ -54,12 +58,14 @@ services:
   beat:
     build:
       context: ./backend
-    command: celery -A marketinghack.celery beat -l info
+    command: celery -A marketinghack.marketinghack.celery beat -l info
     volumes:
-      - ./backend:/app
+      - ./backend/marketinghack:/app
     depends_on:
       - redis
       - db
+    env_file:
+      - ./backend/.env
     environment:
       PYTHONPATH: /app
       DJANGO_SETTINGS_MODULE: marketinghack.settings

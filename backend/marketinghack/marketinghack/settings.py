@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-a@ev_5a^n#d!a*y7)zn$*!iyomf$6l@(_y^k6%e8)9&ixwk!5n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -77,12 +78,8 @@ WSGI_APPLICATION = 'marketinghack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'hackdb'),
-        'USER': os.environ.get('POSTGRES_USER', 'hackuser'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'hackpass'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -129,13 +126,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Caching (Redis)
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL', 'redis://redis:6379/1'),
-        'OPTIONS': {'CLIENT_CLASS': 'django_redis.client.DefaultClient'},
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': os.environ.get('REDIS_URL', 'redis://redis:6379/1'),
+#         'OPTIONS': {'CLIENT_CLASS': 'django_redis.client.DefaultClient'},
+#     }
+# }
+REDIS_URL = "redis://127.0.0.1:6379/0"
+
 
 # Celery
 CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://redis:6379/0')
